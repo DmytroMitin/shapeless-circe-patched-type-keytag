@@ -1,4 +1,5 @@
-lazy val circeV = "0.14.3"
+lazy val circeV     = "0.14.3"
+lazy val shapelessV = "2.3.10"
 
 Global / onChangedBuildSource := ReloadOnSourceChanges
 
@@ -48,20 +49,23 @@ lazy val root = (project in file("."))
 lazy val core = project
   .settings(
     name := "core",
+    resolvers ++= Resolver.sonatypeOssRepos("releases"),
     libraryDependencies ++= Seq(
       "io.circe" %% "circe-core"   % circeV,
 //      "io.circe" %% "circe-generic" % circeV exclude("com.chuusai", "shapeless_2.13"),
       "io.circe" %% "circe-parser" % circeV,
+      "com.github.dmytromitin" %% "circe-generic-patched-type-keytag" % circeV,
+      "com.github.dmytromitin" %% "shapeless-patched-type-keytag"     % shapelessV,
     ),
     scalacOptions ++= Seq(
       "-Ymacro-debug-lite",
     ),
     publish / skip := true,
   )
-  .dependsOn(
-//    shapeless,
-    circeGeneric,
-  )
+//  .dependsOn(
+////    shapeless,
+//    circeGeneric,
+//  )
 
 //https://repo1.maven.org/maven2/io/circe/circe-generic_2.13/0.14.3/
 lazy val circeGeneric = project
@@ -78,7 +82,7 @@ lazy val circeGeneric = project
 lazy val shapeless = project
   .settings(
     name := "shapeless-patched-type-keytag",
-    version := "2.3.10",
+    version := shapelessV,
     libraryDependencies ++= Seq(
       scalaOrganization.value % "scala-reflect"  % scalaVersion.value,
       scalaOrganization.value % "scala-compiler" % scalaVersion.value,
