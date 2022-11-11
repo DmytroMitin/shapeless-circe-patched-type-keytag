@@ -13,6 +13,12 @@ https://repo1.maven.org/maven2/io/circe/circe-generic_2.13/0.14.3/
 
 https://oss.sonatype.org/content/groups/public/com/github/dmytromitin/circe-generic-patched-type-keytag_2.13/0.14.3/
 
+https://github.com/DmytroMitin/shapeless-circe-patched-type-keytag/commit/aaeffcf60c9d4b76f2b726116ed843c3c1426f3e
+
+https://github.com/DmytroMitin/shapeless-circe-patched-type-keytag/commit/93ee58a24e1f3a4babf904d14c966859cedd2f38
+
+https://github.com/DmytroMitin/shapeless-circe-patched-type-keytag/blob/main/core/src/main/scala/Main.scala
+
 ```scala
 scalaVersion := "2.13.10"
 resolvers ++= Resolver.sonatypeOssRepos("releases")
