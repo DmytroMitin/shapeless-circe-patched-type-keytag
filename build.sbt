@@ -1,11 +1,53 @@
-ThisBuild / version := "0.1.0-SNAPSHOT"
-
-ThisBuild / scalaVersion := "2.13.10"
-
 lazy val circeV = "0.14.3"
+
+Global / onChangedBuildSource := ReloadOnSourceChanges
+
+ThisBuild / name                 := "shapeless-circe-patched-type-keytag"
+ThisBuild / organization         := "com.github.dmytromitin"
+ThisBuild / organizationName     := "Dmytro Mitin"
+ThisBuild / organizationHomepage := Some(url("https://github.com/DmytroMitin"))
+ThisBuild / version              := "0.1"
+ThisBuild / scalaVersion         := "2.13.10"
+ThisBuild / scmInfo := Some(ScmInfo(
+  url("https://github.com/DmytroMitin/shapeless-circe-patched-type-keytag"),
+  "https://github.com/DmytroMitin/shapeless-circe-patched-type-keytag.git"
+))
+ThisBuild / developers := List(Developer(
+  id = "DmytroMitin",
+  name = "Dmytro Mitin",
+  email = "dmitin3@gmail.com",
+  url = url("https://github.com/DmytroMitin")
+))
+ThisBuild / description := "Patched Scala-3/Dotty compiler and Eval library"
+ThisBuild / licenses := List("Apache 2" -> new URL("http://www.apache.org/licenses/LICENSE-2.0.txt"))
+ThisBuild / homepage := Some(url("https://github.com/DmytroMitin/dotty-patched"))
+// Remove all additional repository other than Maven Central from POM
+ThisBuild / pomIncludeRepository := { _ => false }
+ThisBuild / publishMavenStyle := true
+ThisBuild / credentials += Credentials(Path.userHome / ".sbt" / "sonatype_credential")
+ThisBuild / publishTo := sonatypePublishToBundle.value
+ThisBuild / sonatypeCredentialHost := "oss.sonatype.org"
+ThisBuild / sonatypeRepository := "https://oss.sonatype.org/service/local"
+//ThisBuild / publishTo := {
+//  val nexus = "https://oss.sonatype.org/"
+//  if (isSnapshot.value) Some("snapshots" at nexus + "content/repositories/snapshots")
+//  else Some("releases" at nexus + "service/local/staging/deploy/maven2")
+//}
+
+lazy val root = (project in file("."))
+  .aggregate(
+    core,
+    circeGeneric,
+    shapeless,
+  )
+  .settings(
+    crossScalaVersions := Nil,
+    publish / skip := true,
+  )
 
 lazy val core = project
   .settings(
+    name := "core",
     libraryDependencies ++= Seq(
       "io.circe" %% "circe-core"   % circeV,
 //      "io.circe" %% "circe-generic" % circeV exclude("com.chuusai", "shapeless_2.13"),
@@ -13,7 +55,8 @@ lazy val core = project
     ),
     scalacOptions ++= Seq(
       "-Ymacro-debug-lite",
-    )
+    ),
+    publish / skip := true,
   )
   .dependsOn(
 //    shapeless,
