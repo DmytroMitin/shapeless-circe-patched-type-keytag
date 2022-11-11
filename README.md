@@ -8,3 +8,7 @@ https://repo1.maven.org/maven2/com/chuusai/shapeless_2.13/2.3.10/
 https://github.com/circe/circe
 
 https://repo1.maven.org/maven2/io/circe/circe-generic_2.13/0.14.3/
+
+```scala
+sbt clean compile core/run
+```
