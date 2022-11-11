@@ -110,7 +110,7 @@ abstract class DerivationMacros[RD[_], RE[_], RC[_], DD[_], DE[_], DC[_]] {
     private[this] val CNilSym = typeOf[CNil].typeSymbol
     private[this] val CConsSym = typeOf[shapeless.:+:[_, _]].typeSymbol
     private[this] val ShapelessLabelledType = typeOf[shapeless.labelled.type]
-    private[this] val KeyTagSym = typeOf[KeyTag[_, _]].typeSymbol
+    private[this] val KeyTagSym = weakTypeOf[KeyTag[_, _]].typeSymbol
     private[this] val ShapelessTagType = typeOf[shapeless.tag.type]
     private[this] val ScalaSymbolType = typeOf[scala.Symbol]
 
