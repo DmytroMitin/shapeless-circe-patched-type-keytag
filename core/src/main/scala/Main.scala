@@ -26,7 +26,12 @@ object Main extends App {
       x.toString
   })
 
-  implicit lazy val DemoCodec: Codec[Demo] =
-    deriveCodec[Demo]
+//  implicit lazy val DemoCodec: Codec[Demo] =
+//    deriveCodec[Demo]
+
+  object Demo {
+    implicit /*lazy*/ val DemoCodec: Codec[Demo] =
+      deriveCodec[Demo]
+  }
 
 }
