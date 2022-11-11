@@ -12,8 +12,11 @@ object Main extends App {
 
   val myDemo=Demo(field1=None)
   print(myDemo.asJson+"\n")
+  //{
+  //  "field1" : "None"
+  //}
 
-  implicit val valueEncoderValue: Encoder[Any] = Encoder.encodeString.contramap[Any](x=>{
+  implicit lazy val valueEncoderValue: Encoder[Any] = Encoder.encodeString.contramap[Any](x=>{
     x.toString})
 
   implicit val valueDecoderValue: Decoder[Any] = Decoder.decodeString.map[Any](x => {
@@ -23,7 +26,6 @@ object Main extends App {
       x.toString
   })
 
-  //java.lang.NullPointerException
   implicit lazy val DemoCodec: Codec[Demo] =
     deriveCodec[Demo]
 
