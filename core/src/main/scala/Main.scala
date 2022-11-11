@@ -23,7 +23,7 @@ object Main extends App {
       x.toString
   })
 
-  //java.lang.ClassCastException: scala.None$ cannot be cast to shapeless.labelled$KeyTag
+  //java.lang.NullPointerException
   implicit lazy val DemoCodec: Codec[Demo] =
     deriveCodec[Demo]
 
