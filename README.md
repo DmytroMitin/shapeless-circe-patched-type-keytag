@@ -1,6 +1,8 @@
 # shapeless-circe-patched-type-keytag
 https://stackoverflow.com/questions/74384745/encoding-decoding-a-field-with-any-datatype-assigned-with-value-none-in-scala
 
+https://github.com/milessabin/shapeless/issues/1285
+
 https://github.com/milessabin/shapeless
 
 https://repo1.maven.org/maven2/com/chuusai/shapeless_2.13/2.3.10/
